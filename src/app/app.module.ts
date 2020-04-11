@@ -6,6 +6,7 @@ import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
 import { PanelModule } from './panel/panel.module';
 import { HomeModule } from './home/home.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HomeModule } from './home/home.module';
     FooterModule,
     PanelModule,
     HomeModule,
+    LoginModule,
     AppRoutingModule
   ],
   providers: [],
