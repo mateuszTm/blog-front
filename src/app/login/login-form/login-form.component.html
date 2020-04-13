@@ -1,0 +1,18 @@
+<div class="card text-center">
+    <div class="card-header">
+        <h3>Please sign in</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
+                <input type="text" id="login" placeholder="your username" formControlName="login" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="your password" formControlerName="password" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+            </div>
+        </form>
+    </div>
+</div>
