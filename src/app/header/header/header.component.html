@@ -1,20 +1,20 @@
-<div class="header">
-    <div class="header-title">
-        <h1>Blog</h1>
-    </div>
-    <div class="home">
-        <a [routerLink]="['/']">Strona główna</a>
-    </div>
-    <div class="register">
-        <a>Zarejestruj</a>
-    </div>
-    <div class="login">
-        <a [routerLink]="['/login']">Zaloguj</a>
-    </div>
-    <div class="logout">
-        <a (click)="logout()">Wyloguj</a>
-    </div>
-    <div class="logout">
-        <a [routerLink]="['/test']">TEST</a>
-    </div>
+<div class="navbar navbar-expand-lg navbar-dark bg-dark header">
+    <a class="navbar-brand h1 m-2" href="#">Blog</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Strona główna</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/panel']">Panel</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/login']">Zaloguj</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Wyloguj</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link">Zarejestruj</a>
+        </li>
+    </ul>
 </div>
