@@ -7,6 +7,9 @@ import { FooterModule } from './footer/footer.module';
 import { PanelModule } from './panel/panel.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
+import { HttpClientModule } from '@angular/common/http';
+import { TestModule } from './test/test.module';
+
 
 @NgModule({
   declarations: [
@@ -14,12 +17,14 @@ import { LoginModule } from './login/login.module';
   ],
   imports: [
     BrowserModule,
+    TestModule,
     HeaderModule,
     FooterModule,
     PanelModule,
     HomeModule,
     LoginModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

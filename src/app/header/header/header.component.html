@@ -1,11 +1,20 @@
 <div class="header">
     <div class="header-title">
-        Blog
+        <h1>Blog</h1>
+    </div>
+    <div class="home">
+        <a [routerLink]="['/']">Strona główna</a>
     </div>
     <div class="register">
         <a>Zarejestruj</a>
     </div>
     <div class="login">
-        <a>Zaloguj</a>
+        <a [routerLink]="['/login']">Zaloguj</a>
+    </div>
+    <div class="logout">
+        <a (click)="logout()">Wyloguj</a>
+    </div>
+    <div class="logout">
+        <a [routerLink]="['/test']">TEST</a>
     </div>
 </div>
