@@ -1,38 +1,20 @@
 <div class="container">
     <p>page: {{ page }}, page size: {{ pageSize }}, totalPages: {{ totalPages }}</p>
-    <div class="posts">{{postsList}}</div>
-    <div class="input-group">
-        <div class="input-gourp-prepend">
-            <button (click)="previousPage()" class="btn btn-light">previous</button>
-        </div>
-        <div class="">
-            <input type="number" value="{{ page }}" name="page" #currentPage (keyup.enter)="goToPage(currentPage.value)" class="form-control">
-        </div>
-        <div class="input-gourp-prepend">
-            <button (click)="nextPage()" class="btn btn-light">next</button>
-        </div>
+    <div class="posts">
+        <app-post *ngFor="let post of postsList" 
+            [title]='post.title'
+            [author]='post.userName'
+            [date]='post.date'
+            [content]='post.content'>
+        </app-post>
     </div>
-
-    <!-- <ul class="pagination">
-        <li class="page-item">
-            <a (click)="previousPage()" class="page-link">previous</a>
-        </li>
-        <li class="page-item" *ngFor="let i of Arr(totalElements).fill(1)">
-            <a (click)="nextPage()" class="page-link">next</a>
-        </li>
-        <li class="page-item">
-            <a (click)="nextPage()" class="page-link">next</a>
-        </li>
-    </ul> -->
-
-    <!-- [totalPages]='totalPages' -->
     <app-pagination
-    [currentPage]='page'
-    [totalPages]='totalPages'
-    [firstPageIndex]=0
-    [linksEachSide]=2
-    (previous)='previousPage()'
-    (next)='nextPage()'
-    (pageClicked)='goToPage($event)'
-    ></app-pagination>
+        [currentPage]='page'
+        [totalPages]='totalPages'
+        [firstPageIndex]=0
+        [linksEachSide]=2
+        (previous)='previousPage()'
+        (next)='nextPage()'
+        (pageClicked)='goToPage($event)'>
+    </app-pagination>
 </div>

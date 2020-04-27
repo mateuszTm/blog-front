@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DashboadComponent implements OnInit {
 
-  postsList = '... wczytywanie listy wpisów';
+  postsList;
   page = 1;
   pageSize = 10;
   totalPages = 0;
@@ -27,7 +27,8 @@ export class DashboadComponent implements OnInit {
         console.log('posts JSON:');
         console.log(data);
         // this.postsList = JSON.stringify(data);
-        this.postsList = JSON.stringify(data.content);
+        // this.postsList = JSON.stringify(data.content);
+        this.postsList = data.content;
         this.page = data.number;
         this.pageSize = data.numberOfElements;
         this.totalPages = data.totalPages;

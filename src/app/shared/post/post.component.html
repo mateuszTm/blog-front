@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ title }}</h5>
+        <div class="card-subtitle">
+            <div>
+                <h6>{{ author }}</h6>
+            </div>
+            <div>
+                {{ date }}
+            </div>
+        </div>
+        <p class="card-text">{{ content }}</p>
+        <a class="card-link" (click)='runEditPost()' >edytuj</a>
+        <a class="card-link" (click)='runDeletePost()'>usuń</a>
+    </div>
+</div>
