@@ -25,11 +25,12 @@
         </li>
     </ul> -->
 
+    <!-- [totalPages]='totalPages' -->
     <app-pagination
     [currentPage]='page'
-    [totalPages]=8
-    [sideOffset]=2
+    [totalPages]='totalPages'
     [firstPageIndex]=0
+    [linksEachSide]=2
     (previous)='previousPage()'
     (next)='nextPage()'
     (pageClicked)='goToPage($event)'
