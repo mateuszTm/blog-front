@@ -16,30 +16,16 @@ export class PaginationComponent implements OnInit, OnChanges {
   @Output() pageClicked: EventEmitter<number> = new EventEmitter();
   pageLinks = [];
   lastPage = 1;
-  private _linksEachSide: number = 1;
+  private _linksEachSide = 1;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.lastPage = (this.firstPageIndex === 0) ? (this.totalPages - 1) : ((this.totalPages - 1) + this.firstPageIndex);
-    console.log(
-      'ngOnInit this.lastPage: ' + this.lastPage + '; ' +
-      'ngOnInit this.firstPageIndex: ' + this.firstPageIndex + '; ' +
-      'ngOnInit this.totalPages: ' + this.totalPages + '; '
-    );
-    console.log(this);
-    this.new_setupPaginator();
+    this._setupPaginator();
   }
 
   ngOnChanges(): void {
-    this.lastPage = (this.firstPageIndex === 0) ? (this.totalPages - 1) : ((this.totalPages - 1) + this.firstPageIndex);
-    console.log(
-      'ngOnChanges this.lastPage: ' + this.lastPage + '; ' +
-      'ngOnChanges this.firstPageIndex: ' + this.firstPageIndex + '; ' +
-      'ngOnChanges this.totalPages: ' + this.totalPages + '; '
-    );
-    console.log(this);
-    this.new_setupPaginator();
+    this._setupPaginator();
   }
 
   @Input()
@@ -54,29 +40,8 @@ export class PaginationComponent implements OnInit, OnChanges {
     return this._linksEachSide;
   }
 
-  // @Input('sideOffset')
-  // set sideOffset(offset: number) {
-  //   if (offset > this.totalPages) {
-  //     offset = this.totalPages / 2;
-  //   }
-  //   this._sideOffset = offset;
-  // }
-
-  // get sideOffset(): number{
-  //   return this._sideOffset;
-  // }
-
-  private new_setupPaginator(){
-    // if (this.startWith === 0) {
-    //   var last = this.totalPages - 1;
-    // } else {
-    //   var last = this.totalPages;
-    // }
-    // let maxOffset;
-    // if (this._sideOffset > this.totalPages) {
-    //   maxOffset = Math.round(maxOffset / 2 );
-    // }
-    // console.log('TEST linksEachSide: ' + this.linksEachSide);
+  private _setupPaginator(){
+    this.lastPage = (this.firstPageIndex === 0) ? (this.totalPages - 1) : ((this.totalPages - 1) + this.firstPageIndex);
     this.pageLinks = this._getPages(
       this.firstPageIndex,
       this.lastPage,
@@ -88,36 +53,28 @@ export class PaginationComponent implements OnInit, OnChanges {
   private _getPages(firstPage: number, lastPage: number, currentPage: number, maxOffset: number): number[] {
     let start = currentPage - maxOffset;
     let end = currentPage + maxOffset;
-    
-    console.log('firstPage: ' + firstPage + '; lastPage:' + lastPage + '; currentPage: ' + currentPage + '; maxOffset: ' + maxOffset + '; start: ' + start + '; end: ' + end);
 
-    const increase = (base: number, max: number, increase: number) => {
-      console.log('increase base: ' + base + '; max: ' + max + '; amount: ' + increase);
-      while ((base < max) && (increase !== 0)) {
+    const increase = (base: number, max: number, amount: number) => {
+      while ((base < max) && (amount !== 0)) {
         base = base + 1;
-        increase = increase - 1;
-        console.log('base: ' + base + '; amount: ' + increase);
+        amount = amount - 1;
       }
       return base;
     };
 
-    const decrease = (base: number, min: number, decrease: number) => {
-      console.log('decrease base: ' + base + '; min: ' + min + '; amount: ' + decrease);
-      while ((base > min) && (decrease !== 0)) {
+    const decrease = (base: number, min: number, amount: number) => {
+      while ((base > min) && (amount !== 0)) {
         base = base - 1;
-        decrease = decrease - 1;
-        console.log('base: ' + base + '; amount: ' + decrease);
+        amount = amount - 1;
       }
       return base;
     };
 
     if (start < firstPage) {
-      console.log('start < firstPage');
       end = increase(end, lastPage, (firstPage - start));
       start = firstPage;
     }
     if (end > lastPage) {
-      console.log('end > lastPage');
       start = decrease(start, firstPage, ((end - lastPage)));
       end = lastPage;
     }
@@ -125,38 +82,7 @@ export class PaginationComponent implements OnInit, OnChanges {
     for (let i = start; i <= end; i++ ) {
         pages.push(i);
     }
-    console.log('start: ' + start + ' end: ' + end);
-    console.log(pages);
     return pages;
-  }
-
-  private old_setupPaginator() {
-    const totalPages = this.totalPages;
-    const currentPage = this.currentPage;
-    // if(this.sideOffset > this.totalPages) {
-    //   this.sideOffset = this.totalPages / 2;
-    // }
-    const sideOffset = this.sideOffset;
-    const pageLinks = sideOffset * 2 + 1;
-
-    let start = currentPage - sideOffset;
-    if (start < 0) {
-        start = 0;
-    }
-
-    let end = start + pageLinks;
-    if (end > totalPages) {
-        end = totalPages;
-        start = end - pageLinks;
-    }
-
-    // const pages = [];
-    // for (let i = start; i <= end; i++ ) {
-    //     pages.push(i);
-    // }
-    // console.log('start: ' + start + ' end: ' + end);
-    // console.log(pages);
-    // this.pageLinks = pages;
   }
 
   runNext() {
