@@ -5,6 +5,7 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -12,6 +13,7 @@ import { FooterModule } from '../footer/footer.module';
   declarations: [DashboadComponent, HomeComponent],
   imports: [
     CommonModule,
+    SharedModule,
     HomeRoutingModule,
     HeaderModule,
     FooterModule

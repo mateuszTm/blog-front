@@ -1,0 +1,20 @@
+<div class="pag">
+  <span>currentPage: {{ currentPage }};  </span>
+  <span>totalPages: {{ totalPages }};  </span>
+    <span>sideOffset: {{ sideOffset }};  </span>
+        <span>pageLinks: {{ pageLinks }};  </span>
+    <!-- <button class="btn" (click)='runNext()'>runNext()</button>
+    <button class="btn" (click)='runPrevious()'>runPrevious()</button> -->
+
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage<=firstPageIndex">
+          <a (click)="runPrevious()" class="page-link">previous</a>
+      </li>
+      <li class="page-item" *ngFor="let pageLink of pageLinks" [class.active]="pageLink==currentPage">
+          <a (click)="runPageClicked(pageLink)" class="page-link">{{pageLink}}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage == lastPage">
+          <a (click)="runNext()" class="page-link">next</a>
+      </li>
+    </ul>
+</div>
