@@ -8,13 +8,15 @@
             [content]='post.content'>
         </app-post>
     </div>
-    <app-pagination
-        [currentPage]='page'
-        [totalPages]='totalPages'
-        [firstPageIndex]=0
-        [linksEachSide]=2
-        (previous)='previousPage()'
-        (next)='nextPage()'
-        (pageClicked)='goToPage($event)'>
-    </app-pagination>
+    <div class="row">
+        <app-pagination class="mx-auto"
+            [currentPage]='page'
+            [totalPages]='totalPages'
+            [firstPageIndex]=0
+            [linksEachSide]=2
+            (previous)='previousPage()'
+            (next)='nextPage()'
+            (pageClicked)='goToPage($event)'>
+        </app-pagination>
+    </div>
 </div>
