@@ -6,11 +6,12 @@ import { PostsComponent } from './posts/posts.component';
 import { PanelRoutingModule } from './panel-routing.module';
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
 
 
 
 @NgModule({
-  declarations: [ConfigComponent, PanelComponent, PostsComponent],
+  declarations: [ConfigComponent, PanelComponent, PostsComponent, SidemenuComponent],
   imports: [
     CommonModule,
     PanelRoutingModule,
