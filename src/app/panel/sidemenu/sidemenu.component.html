@@ -1,10 +1,10 @@
-<div class="container-fluid border-right text-center" style="background-color: cornflowerblue;">
+<div class="container-fluid border-right text-center py-4">
 <ul class="nav flex-column nav-pills">
-    <li class="nav-item">
-        <a class="nav-link active ">account</a>
+    <li class="nav-item my-2">
+        <a class="nav-link" [routerLink]="['config']" routerLinkActive="active">account</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link">posts</a>
+    <li class="nav-item my-2">
+        <a class="nav-link" [routerLink]="['posts']" routerLinkActive="active">posts</a>
     </li>
 </ul>
 </div>
