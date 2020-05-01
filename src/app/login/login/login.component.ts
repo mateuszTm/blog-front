@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.loginService.isLoggedIn()) {
-      // window.alert('You are logged in');
-      // this.router.navigate(['/']);
+      window.alert('You are logged in');
+      this.router.navigate(['/']);
     } else {
       if (!this.loginService.isUserVerified()) {
         this.loginService.verifyUser();

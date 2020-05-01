@@ -33,7 +33,6 @@ export class ImplicitLoginService implements LoginService {
         return window.location.href.includes('access_token');
     }
 
-    // todo wyjebać to boolean
     aquireAccessToken(): void {
         this.oauthService.tryLogin();
     }
