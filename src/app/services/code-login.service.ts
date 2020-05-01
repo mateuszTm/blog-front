@@ -34,8 +34,8 @@ export class CodeLoginService implements LoginService {
         return window.location.href.includes('code');
     }
 
-    aquireAccessToken(): boolean{
-        let code = this._retrieveAccessCode();
+    aquireAccessToken(): void{
+        const code = this._retrieveAccessCode();
         if (code) {
             this._requestAccessToken(code)
                 .subscribe({
@@ -44,9 +44,7 @@ export class CodeLoginService implements LoginService {
                         window.location.href = this.redirectUriDone;
                     }
                 });
-            return true;
         }
-        return false;
     }
 
     private _redirectToCodeAuthEndpoint() {

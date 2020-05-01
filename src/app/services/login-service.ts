@@ -12,7 +12,7 @@ export interface TokenResponse {
 export abstract class LoginService {
     abstract verifyUser(): void;
     abstract isUserVerified(): boolean;
-    abstract aquireAccessToken(): boolean;
+    abstract aquireAccessToken(): void;
     abstract isLoggedIn(): boolean;
     abstract logout(): void;
 }

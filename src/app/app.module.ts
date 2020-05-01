@@ -9,6 +9,7 @@ import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TestModule } from './test/test.module';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TestModule } from './test/test.module';
     HomeModule,
     LoginModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
