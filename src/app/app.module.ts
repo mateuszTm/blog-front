@@ -8,7 +8,6 @@ import { PanelModule } from './panel/panel.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
-import { TestModule } from './test/test.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
 
@@ -18,7 +17,6 @@ import { OAuthModule } from 'angular-oauth2-oidc';
   ],
   imports: [
     BrowserModule,
-    TestModule,
     HeaderModule,
     FooterModule,
     PanelModule,

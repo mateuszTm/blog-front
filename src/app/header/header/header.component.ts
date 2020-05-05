@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login-service';
-import { CodeLoginService } from 'src/app/services/code-login.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
-  providers: [{provide: LoginService, useClass: CodeLoginService}]
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  loggedIn = false;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.loggedIn = this.authService.isLoggedIn();
   }
 
   logout(): void {
-    this.loginService.logout();
+    this.authService.logout();
     window.location.reload();
-    console.log('you have been logged out');
   }
 }

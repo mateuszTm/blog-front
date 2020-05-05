@@ -7,14 +7,19 @@
         <li class="nav-item">
             <a class="nav-link" [routerLink]="['/panel']">Panel</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/login']">Zaloguj</a>
-        </li>
-        <li class="nav-item">
+
+        <li class="nav-item" *ngIf="loggedIn; else loginLink">
             <a class="nav-link" (click)="logout()">Wyloguj</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link">Zarejestruj</a>
-        </li>
+        </li>        
+        <ng-template #loginLink>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['/login']" >Zaloguj</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">Zarejestruj</a>
+            </li>
+        </ng-template>
+        
+        
     </ul>
 </div>

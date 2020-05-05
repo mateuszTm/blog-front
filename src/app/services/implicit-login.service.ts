@@ -1,17 +1,16 @@
-import { LoginService } from './login-service';
+import { AbstractAuthService } from './abstract-auth-service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ImplicitLoginService implements LoginService {
+export class ImplicitLoginService implements AbstractAuthService {
 
-    private authUrl = 'http://localhost:8080/backend/oauth/authorize';
+    private authUrl = 'http://localhost:8081/authserver/oauth/authorize';
     private clientId = 'client-id';
     private redirectUriLogin = 'http://localhost:4200/login';
-    
+
     constructor(
         private oauthService: OAuthService
     ) {

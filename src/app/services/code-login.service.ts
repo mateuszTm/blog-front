@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import { LoginService, TokenResponse } from './login-service';
+import { AbstractAuthService, TokenResponse } from './abstract-auth-service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class CodeLoginService implements LoginService {
+export class CodeLoginService implements AbstractAuthService {
 
     private cookieName = 'access_token';
-    private authUrl = 'http://localhost:8080/backend/oauth/authorize';
-    private tokenUrl = 'http://localhost:8080/backend/oauth/token';
+    private authUrl = 'http://localhost:8081/authserver/oauth/authorize';
+    private tokenUrl = 'http://localhost:8081/authserver/oauth/token';
     private clientId = 'client-id';
     private clientSecret = 'client-secret';
     private redirectUriLogin = 'http://localhost:4200/login';
