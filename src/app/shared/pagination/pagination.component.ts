@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { ResourcesPage } from 'src/app/dto/resources-page';
 
 @Component({
   selector: 'app-pagination',
@@ -7,25 +8,23 @@ import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angu
 })
 export class PaginationComponent implements OnInit, OnChanges {
 
-  @Input() currentPage = 1;
-  @Input() totalPages: number;
   @Input() firstPageIndex = 0;
-  @Input() sideOffset: number;
   @Output() previous: EventEmitter<void> = new EventEmitter();
   @Output() next: EventEmitter<void> = new EventEmitter();
   @Output() pageClicked: EventEmitter<number> = new EventEmitter();
   pageLinks = [];
   lastPage = 1;
+  currentPage = 1;
   private _linksEachSide = 1;
+  private _data;
+  private totalPages = 1;
 
   constructor() { }
 
   ngOnInit(): void {
-    this._setupPaginator();
   }
 
   ngOnChanges(): void {
-    this._setupPaginator();
   }
 
   @Input()
@@ -38,6 +37,20 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   get linksEachSide(): number {
     return this._linksEachSide;
+  }
+
+  @Input()
+  set data(data: ResourcesPage) {
+    if (data !== undefined) {
+      this._data = data;
+      this.currentPage = this._data.number;
+      this.totalPages = this._data.totalPages;
+      this._setupPaginator();
+    }
+  }
+
+  get data() {
+    return this._data;
   }
 
   private _setupPaginator(){
@@ -86,11 +99,15 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   runNext() {
-    this.next.emit();
+    if (this.currentPage < this.lastPage) {
+      this.next.emit();
+    }
   }
 
   runPrevious() {
-    this.previous.emit();
+    if (this.currentPage > this.firstPageIndex) {
+      this.previous.emit();
+    }
   }
 
   runPageClicked(page: number) {

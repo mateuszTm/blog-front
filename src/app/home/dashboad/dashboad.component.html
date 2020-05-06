@@ -1,5 +1,5 @@
 <div class="container">
-    <p>page: {{ page }}, page size: {{ pageSize }}, totalPages: {{ totalPages }}</p>
+    <!-- <p>page: {{ data.number }}, page size: {{ data.numberOfElements }}, totalPages: {{ data.totalPages }}</p> -->
     <div class="posts">
         <app-post *ngFor="let post of postsList" 
             [title]='post.title'
@@ -10,13 +10,11 @@
     </div>
     <div class="row">
         <app-pagination class="mx-auto"
-            [currentPage]='page'
-            [totalPages]='totalPages'
-            [firstPageIndex]=0
-            [linksEachSide]=2
+            [data]='data'
             (previous)='previousPage()'
             (next)='nextPage()'
             (pageClicked)='goToPage($event)'>
         </app-pagination>
     </div>
+    <span class="row m-2">Liczba elementów: {{pageElements}}</span>
 </div>
