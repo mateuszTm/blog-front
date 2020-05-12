@@ -1,6 +1,7 @@
 import { AbstractAuthService } from './abstract-auth-service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -45,11 +46,7 @@ export class ImplicitLoginService implements AbstractAuthService {
         location.reload();
     }
 
-    // TODO
-    // getResource(resourceUrl) : Observable<any>{
-    //     var headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer '+this.oauthService.getAccessToken()});
-    //     return this._http.get(resourceUrl, { headers: headers })
-    //                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-    //   }
-       
+    getAccessToken(): string {
+        return this.oauthService.getAccessToken();
+    }
 }

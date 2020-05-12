@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row card text-center">
+        <form [formGroup]="addPostform" (ngSubmit)="addPost()" class="col card-body">
+            <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">Tytuł</label>
+                <div class="col-sm-10">
+                    <input id="title" formControlName="title" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="content" class="col-sm-2 col-form-label">Treść</label>
+                <div class="col-sm-10">
+                    <textarea rows="6" id="content" formControlName="content" class="form-control">
+                    </textarea>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="mx-auto btn btn-primary">dodaj wpis</button>
+            </div>
+        </form>
+    </div>
+</div>

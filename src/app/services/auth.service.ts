@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ImplicitLoginService } from './implicit-login.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -26,5 +27,9 @@ export class AuthService {
 
     logout(): void {
         this.auth.logout();
+    }
+
+    getAccessToken(): string {
+        return this.auth.getAccessToken();
     }
 }
