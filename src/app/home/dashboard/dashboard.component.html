@@ -5,10 +5,7 @@
     <div class="posts row">
         <div class="col">
             <app-post *ngFor="let post of postsList" 
-                [title]='post.title'
-                [author]='post.userName'
-                [date]='post.date'
-                [content]='post.content'>
+                [post]='post'>
             </app-post>
         </div>
     </div>

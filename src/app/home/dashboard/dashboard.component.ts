@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/services/post-service.service';
 import { ResourcesPage } from 'src/app/dto/resources-page';
+import { Post } from 'src/app/dto/post';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { ResourcesPage } from 'src/app/dto/resources-page';
 })
 export class DashboardComponent implements OnInit {
 
-  postsList: object[];
+  postsList: Post[];
   data: ResourcesPage;
   pageElements: number;
 

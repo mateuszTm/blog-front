@@ -1,16 +1,16 @@
 <div class="card m-2">
     <div class="card-body">
-        <h5 class="card-title">{{ title }}</h5>
+        <h5 class="card-title">{{ post.title }}</h5>
         <div class="card-subtitle d-sm-flex">
             <div class="mr-auto">
-                <h6>{{ author }}</h6>
+                <h6>{{ post.userName }}</h6>
             </div>
             <div>
-                {{ date }}
+                {{ post.date }}
             </div>
         </div>
-        <p class="card-text">{{ content }}</p>
-        <a class="card-link" (click)='runEditPost()' >edytuj</a>
+        <p class="card-text">{{ post.content }}</p>
+        <a class="card-link" [routerLink]="['/editPost', post.id]" >edytuj</a>
         <a class="card-link" (click)='runDeletePost()'>usuń</a>
     </div>
 </div>

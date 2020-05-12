@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Post } from 'src/app/dto/post';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -7,20 +9,24 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  @Input() title: string;
-  @Input() author: string;
-  @Input() date: string;
-  @Input() content: string;
+  @Input() post: Post;
+  // @Input() title: string;
+  // @Input() author: string;
+  // @Input() date: string;
+  // @Input() content: string;
   @Output() editPost: EventEmitter<void> = new EventEmitter();
   @Output() deletePost: EventEmitter<void> = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   runEditPost() {
     console.log('kliknięto edycję wpisu');
+    this.router.navigate(['/editPost/' + this.post.id]);
   }
 
   runDeletePost() {

@@ -4,6 +4,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PostService } from 'src/app/services/post-service.service';
 import { Router } from '@angular/router';
+import { Post } from 'src/app/dto/post';
+import { PostForm } from 'src/app/dto/post-form';
 
 @Component({
   selector: 'app-post-add',
@@ -15,22 +17,17 @@ export class PostAddComponent implements OnInit {
   @Input() onCancelRoute = '';
   @Input() onSuccessRoute = '';
   isFormVisible = false;
-  addPostform: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
     private postService: PostService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.addPostform = this.fb.group({
-      title: [''],
-      content: ['']
-    });
+
   }
 
-  addPost() {
+  addPost(post: PostForm) {
     console.log('addPost; kliknięto dodaj post');
     // let httpheaders = new HttpHeaders({
     //   'Content-type': 'application/json; charset=utf-8', 
@@ -51,10 +48,7 @@ export class PostAddComponent implements OnInit {
   // });
                       //  .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
-    this.postService.addPost(
-        this.addPostform.get('title').value,
-        this.addPostform.get('content').value
-      ).subscribe({
+    this.postService.addPost(post).subscribe({
         next: (data) => {
           console.log('post/add response: ');
           console.log(data);
@@ -63,7 +57,7 @@ export class PostAddComponent implements OnInit {
       });
   }
 
-  runOnCancel() {
+  runOnCancel(post: PostForm) {
     if (this.onCancelRoute) {
       this.router.navigate([this.onCancelRoute]);
     }
@@ -73,6 +67,8 @@ export class PostAddComponent implements OnInit {
   runOnSuccess() {
     if (this.onSuccessRoute) {
       this.router.navigate([this.onSuccessRoute]);
+    } else {
+      window.location.reload();
     }
     this.hideForm();
   }

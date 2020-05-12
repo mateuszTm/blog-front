@@ -6,12 +6,9 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
 import { SharedModule } from '../shared/shared.module';
-import { AddPostComponent } from './add-post/add-post.component';
-
-
 
 @NgModule({
-  declarations: [DashboardComponent, HomeComponent, AddPostComponent],
+  declarations: [DashboardComponent, HomeComponent],
   imports: [
     CommonModule,
     SharedModule,

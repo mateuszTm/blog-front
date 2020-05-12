@@ -9,14 +9,18 @@ import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { EditPostComponent } from './edit-post/edit-post.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     HeaderModule,
     FooterModule,
     PanelModule,

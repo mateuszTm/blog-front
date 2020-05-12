@@ -1,10 +1,5 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-    providedIn: 'root'
-})
 export class ResourcesPage {
-    content: object[];
+    content: [];
     numberOfElements: number;
     totalPages: number;
     number: number;
