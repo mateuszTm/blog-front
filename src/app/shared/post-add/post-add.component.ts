@@ -14,6 +14,7 @@ export class PostAddComponent implements OnInit {
 
   @Input() onCancelRoute = '';
   @Input() onSuccessRoute = '';
+  isFormVisible = false;
   addPostform: FormGroup;
 
   constructor(
@@ -24,8 +25,8 @@ export class PostAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.addPostform = this.fb.group({
-      title: ['title'],
-      content: ['dupa']
+      title: [''],
+      content: ['']
     });
   }
 
@@ -66,11 +67,21 @@ export class PostAddComponent implements OnInit {
     if (this.onCancelRoute) {
       this.router.navigate([this.onCancelRoute]);
     }
+    this.hideForm();
   }
 
   runOnSuccess() {
     if (this.onSuccessRoute) {
       this.router.navigate([this.onSuccessRoute]);
     }
+    this.hideForm();
+  }
+
+  showForm() {
+    this.isFormVisible = true;
+  }
+
+  hideForm() {
+    this.isFormVisible = false;
   }
 }

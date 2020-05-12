@@ -1,5 +1,8 @@
 <div class="container">
-    <div class="row card text-center">
+    <div *ngIf="!isFormVisible" class="row">
+        <a (click)="showForm()" class="col btn btn-light">Dodaj wpis</a>
+    </div>
+    <div *ngIf="isFormVisible" class="row card text-center">
         <form [formGroup]="addPostform" (ngSubmit)="addPost()" class="col card-body">
             <div class="form-group row">
                 <label for="title" class="col-sm-2 col-form-label">Tytuł</label>
@@ -16,7 +19,7 @@
             </div>
             <div class="form-group">
                     <button type="submit" class="btn btn-primary m-2">Dodaj wpis</button>
-                    <button *ngIf="onCancelRoute" type="button" (click)="runOnCancel()" class="btn btn-light m-2">Anuluj</button>
+                    <button type="button" (click)="runOnCancel()" class="btn btn-light m-2">Anuluj</button>
             </div>
         </form>
     </div>
