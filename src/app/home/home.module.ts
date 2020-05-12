@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboadComponent } from './dashboad/dashboad.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
 import { SharedModule } from '../shared/shared.module';
+import { AddPostComponent } from './add-post/add-post.component';
 
 
 
 @NgModule({
-  declarations: [DashboadComponent, HomeComponent],
+  declarations: [DashboardComponent, HomeComponent, AddPostComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -18,6 +19,6 @@ import { SharedModule } from '../shared/shared.module';
     HeaderModule,
     FooterModule
   ],
-  exports: [DashboadComponent]
+  exports: [DashboardComponent]
 })
 export class HomeModule { }

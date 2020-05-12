@@ -3,11 +3,11 @@ import { PostService } from 'src/app/services/post-service.service';
 import { ResourcesPage } from 'src/app/dto/resources-page';
 
 @Component({
-  selector: 'app-dashboad',
-  templateUrl: './dashboad.component.html',
-  styleUrls: ['./dashboad.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class DashboadComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   postsList: object[];
   data: ResourcesPage;

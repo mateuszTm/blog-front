@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PostService } from 'src/app/services/post-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-add',
@@ -10,12 +11,16 @@ import { PostService } from 'src/app/services/post-service.service';
   styleUrls: ['./post-add.component.css']
 })
 export class PostAddComponent implements OnInit {
+
+  @Input() onCancelRoute = '';
+  @Input() onSuccessRoute = '';
   addPostform: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private postService: PostService) {
-  }
+    private postService: PostService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.addPostform = this.fb.group({
@@ -51,8 +56,21 @@ export class PostAddComponent implements OnInit {
       ).subscribe({
         next: (data) => {
           console.log('post/add response: ');
-          console.log(data); }
+          console.log(data);
+          this.runOnSuccess();
+        }
       });
   }
 
+  runOnCancel() {
+    if (this.onCancelRoute) {
+      this.router.navigate([this.onCancelRoute]);
+    }
+  }
+
+  runOnSuccess() {
+    if (this.onSuccessRoute) {
+      this.router.navigate([this.onSuccessRoute]);
+    }
+  }
 }

@@ -14,8 +14,9 @@
                     </textarea>
                 </div>
             </div>
-            <div class="row">
-                <button type="submit" class="mx-auto btn btn-primary">dodaj wpis</button>
+            <div class="form-group">
+                    <button type="submit" class="btn btn-primary m-2">Dodaj wpis</button>
+                    <button *ngIf="onCancelRoute" type="button" (click)="runOnCancel()" class="btn btn-light m-2">Anuluj</button>
             </div>
         </form>
     </div>

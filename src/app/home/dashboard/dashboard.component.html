@@ -1,0 +1,27 @@
+<div class="container">
+    <!-- <p>page: {{ data.number }}, page size: {{ data.numberOfElements }}, totalPages: {{ data.totalPages }}</p> -->
+    <div class="row">
+        <a [routerLink]="['addPost']" class="col btn btn-light">Dodaj wpis</a>
+    </div>
+    <div class="posts row">
+        <div class="col">
+            <app-post *ngFor="let post of postsList" 
+                [title]='post.title'
+                [author]='post.userName'
+                [date]='post.date'
+                [content]='post.content'>
+            </app-post>
+        </div>
+    </div>
+    <div class="row">
+        <app-pagination class="col-ms-4 mx-auto"
+            [data]='data'
+            (previous)='previousPage()'
+            (next)='nextPage()'
+            (pageClicked)='goToPage($event)'>
+        </app-pagination>
+    </div>
+    <div class="row">
+        <span class="col mb-4">Liczba elementów: {{pageElements}}</span>
+    </div>
+</div>
