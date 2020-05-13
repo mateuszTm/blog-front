@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboadComponent } from './dashboad.component';
+import { PostAddComponent } from './post-add.component';
 
-describe('DashboadComponent', () => {
-  let component: DashboadComponent;
-  let fixture: ComponentFixture<DashboadComponent>;
+describe('PostAddComponent', () => {
+  let component: PostAddComponent;
+  let fixture: ComponentFixture<PostAddComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboadComponent ]
+      declarations: [ PostAddComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboadComponent);
+    fixture = TestBed.createComponent(PostAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

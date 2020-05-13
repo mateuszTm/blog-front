@@ -1,0 +1,11 @@
+<div class="container">
+    <div *ngIf="!isFormVisible" class="row">
+        <a (click)="showForm()" class="col btn btn-light">Dodaj wpis</a>
+    </div>
+    <app-post-form 
+        *ngIf="isFormVisible"
+        class="row"
+        (clickedSubmit)='addPost($event)'
+        (clickedCancel)='runOnCancel($event)'
+    ></app-post-form>
+</div>

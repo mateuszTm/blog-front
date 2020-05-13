@@ -1,5 +1,5 @@
-<div class="navbar navbar-expand-lg navbar-dark bg-dark header">
-    <a class="navbar-brand h1 m-2" href="#">Blog</a>
+<div class="navbar navbar-expand-lg navbar-dark bg-dark header mb-4">
+    <a class="navbar-brand h1 m-2 mr-auto" href="#">Blog</a>
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Strona główna</a>
@@ -7,14 +7,19 @@
         <li class="nav-item">
             <a class="nav-link" [routerLink]="['/panel']" routerLinkActive="active">Panel</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/login']">Zaloguj</a>
-        </li>
-        <li class="nav-item">
+
+        <li class="nav-item" *ngIf="loggedIn; else loginLink">
             <a class="nav-link" (click)="logout()">Wyloguj</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link">Zarejestruj</a>
-        </li>
+        </li>        
+        <ng-template #loginLink>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['/login']" >Zaloguj</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">Zarejestruj</a>
+            </li>
+        </ng-template>
+        
+        
     </ul>
 </div>

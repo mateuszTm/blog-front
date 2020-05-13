@@ -1,30 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login-service';
 import { Router } from '@angular/router';
-import { CodeLoginService } from 'src/app/services/code-login.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [{provide: LoginService, useClass: CodeLoginService}]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    if (this.loginService.isLoggedIn()) {
-      window.alert('You are already logged in');
+    if (this.authService.isLoggedIn()) {
+      MessageService.info('You are already logged in');
       this.router.navigate(['/']);
+      console.log('is logged in');
     } else {
-      if (!this.loginService.isUserVerified()) {
-        this.loginService.verifyUser();
+      if (!this.authService.isUserVerified()) {
+        alert('is not verified');
+        this.authService.verifyUser();
       }
-      this.loginService.aquireAccessToken();
+      alert('aquire token');
+      this.authService.aquireAccessToken();
     }
   }
 }
