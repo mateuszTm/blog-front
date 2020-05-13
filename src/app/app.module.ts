@@ -11,12 +11,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { SharedModule } from './shared/shared.module';
+import { TestOneComponent } from './test/test-one/test-one.component';
+import { TestTwoComponent } from './test/test-two/test-two.component';
+import { TestBaseComponent } from './test/test-base/test-base.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditPostComponent
+    EditPostComponent,
+    TestOneComponent,
+    TestTwoComponent,
+    TestBaseComponent
   ],
   imports: [
     BrowserModule,

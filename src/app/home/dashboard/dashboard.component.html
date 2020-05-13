@@ -4,17 +4,15 @@
     </div>
     <div class="posts row">
         <div class="col">
-            <app-post *ngFor="let post of postsList" 
+            <app-post *ngFor="let post of page.content" 
                 [post]='post'>
             </app-post>
         </div>
     </div>
     <div class="row">
         <app-pagination class="col-ms-4 mx-auto"
-            [data]='data'
-            (previous)='previousPage()'
-            (next)='nextPage()'
-            (pageClicked)='goToPage($event)'>
+            [resourcesPage]='page'
+            (actionParams)='getPage($event)'>
         </app-pagination>
     </div>
     <div class="row">

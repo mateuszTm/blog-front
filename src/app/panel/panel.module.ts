@@ -7,6 +7,7 @@ import { PanelRoutingModule } from './panel-routing.module';
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,6 +15,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
   declarations: [ConfigComponent, PanelComponent, PostsComponent, SidemenuComponent],
   imports: [
     CommonModule,
+    SharedModule,
     PanelRoutingModule,
     HeaderModule,
     FooterModule

@@ -8,55 +8,50 @@ import { ResourcesPage } from '../dto/resources-page';
 
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class PostService{
-    private url = 'http://localhost:8082/resourceserver/post';
+export class PostService {
+  private url = 'http://localhost:8082/resourceserver/post';
 
-    constructor(
-        private http: HttpClient,
-        private authService: AuthService
-    ) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) { }
 
-    public getPostById(id: number|string): Observable<Post> {
-      return this.http.get<Post>(this.url + '/' + id);
+  private getHeaders(): HttpHeaders{
+    return new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Bearer ' + this.authService.getAccessToken()
+    });
+  }
+
+  public getPostById(id: number | string): Observable<Post> {
+    return this.http.get<Post>(this.url + '/' + id);
+  }
+
+  public getPosts(httpParams?: HttpParams): Observable<ResourcesPage> {
+    if (!httpParams) {
+      httpParams = new HttpParams().set('page', '0');
     }
+    return this.http.get<ResourcesPage>(this.url, { params: httpParams.set('sort', 'date,desc') });
+  }
 
-    public getPosts(options?: object): Observable<ResourcesPage> {
-        return this.http.get<ResourcesPage>(this.url, options);
-    }
+  public addPost(post: PostForm): Observable<Post> {
+    return this.http.post<Post>(
+      this.url,
+      post,
+      {
+        headers: this.getHeaders()
+      });
+  }
 
-    public getPage(pageNumber: number): Observable<ResourcesPage> {
-        return this.getPosts({
-          params: {
-            page: pageNumber.toString(),
-            sort: 'date,desc'
-          }
-        });
-    }
-
-    public addPost(post: PostForm): Observable<Post> {
-          return this.http.post<Post>(
-            this.url,
-            post,
-            {
-              headers: {
-                'Content-type': 'application/json; charset=utf-8',
-                Authorization: 'Bearer ' + this.authService.getAccessToken()
-              }
-            });
-    }
-
-    public editPost(id: number|string, post: PostForm): Observable<Post> {
-      return this.http.put<Post>(
-        this.url + '/' + id,
-        post,
-        {
-          headers: {
-            'Content-type': 'application/json; charset=utf-8',
-            Authorization: 'Bearer ' + this.authService.getAccessToken()
-          }
-        }
-      );
-    }
+  public editPost(id: number | string, post: PostForm): Observable<Post> {
+    return this.http.put<Post>(
+      this.url + '/' + id,
+      post,
+      {
+        headers: this.getHeaders()
+      }
+    );
+  }
 }

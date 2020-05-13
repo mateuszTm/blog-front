@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { ResourcesPage } from 'src/app/dto/resources-page';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-pagination',
@@ -9,9 +10,8 @@ import { ResourcesPage } from 'src/app/dto/resources-page';
 export class PaginationComponent implements OnInit, OnChanges {
 
   @Input() firstPageIndex = 0;
-  @Output() previous: EventEmitter<void> = new EventEmitter();
-  @Output() next: EventEmitter<void> = new EventEmitter();
-  @Output() pageClicked: EventEmitter<number> = new EventEmitter();
+  @Output() actionParams: EventEmitter<HttpParams> = new EventEmitter();
+
   pageLinks = [];
   lastPage = 1;
   currentPage = 1;
@@ -39,7 +39,7 @@ export class PaginationComponent implements OnInit, OnChanges {
     return this._linksEachSide;
   }
 
-  @Input()
+  @Input('resourcesPage')
   set data(data: ResourcesPage) {
     if (data !== undefined) {
       this._data = data;
@@ -100,17 +100,21 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   runNext() {
     if (this.currentPage < this.lastPage) {
-      this.next.emit();
+      this.runActionParams(this.currentPage + 1);
     }
   }
 
   runPrevious() {
     if (this.currentPage > this.firstPageIndex) {
-      this.previous.emit();
+      this.runActionParams(this.currentPage - 1);
     }
   }
 
   runPageClicked(page: number) {
-    this.pageClicked.emit(page);
+    this.runActionParams(page);
+  }
+
+  runActionParams(pageNumber: number) {
+    this.actionParams.emit(new HttpParams().append('page', pageNumber.toString()));
   }
 }
