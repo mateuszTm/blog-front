@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { PostService } from '../services/post-service.service';
 import { Post } from '../dto/post';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostForm } from '../dto/post-form';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-edit-post',
@@ -12,7 +12,7 @@ import { PostForm } from '../dto/post-form';
 })
 export class EditPostComponent implements OnInit {
 
-  private id: string;
+  post = new Post('','','','','','');
 
   constructor(
     private postService: PostService,
@@ -21,24 +21,22 @@ export class EditPostComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('editing post id: ' + this.id);
+    this.postService.getPostById(this.activatedRoute.snapshot.paramMap.get('id')).subscribe({
+      next: (data: Post) => {
+        this.post = data;
+      }
+    });
   }
 
   runSavePost(post: PostForm) {
-    console.log('submit edit post form');
-
-    this.postService.editPost(this.id, post).subscribe({
+    this.postService.editPost(this.post.id, post).subscribe({
       next: data => {
-        console.log('edited post');
-        console.log(data);
-        alert('Wpis został pomyślnie edytowany');
+        MessageService.success('Wpis został pomyślnie edytowany');
       }
     });
   }
 
   runOnCancel(post: PostForm) {
     this.router.navigate(['/home']);
-    console.log('canceled edit post form');
   }
 }

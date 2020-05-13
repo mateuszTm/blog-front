@@ -18,6 +18,10 @@ export class PostService{
         private authService: AuthService
     ) {}
 
+    public getPostById(id: number|string): Observable<Post> {
+      return this.http.get<Post>(this.url + '/' + id);
+    }
+
     public getPosts(options?: object): Observable<ResourcesPage> {
         return this.http.get<ResourcesPage>(this.url, options);
     }

@@ -10,33 +10,48 @@ import { PostForm } from 'src/app/dto/post-form';
 })
 export class PostFormComponent implements OnInit {
 
-  postForm: FormGroup;
+  postFormGroup: FormGroup;
   @Input() defaultValue = new PostForm('', '');
   @Output() clickedSubmit: EventEmitter<PostForm> = new EventEmitter();
   @Output() clickedCancel: EventEmitter<PostForm> = new EventEmitter();
+  private _post: Post;
 
   constructor(
     private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.postForm = this.fb.group({
-      title: [this.defaultValue.title],
-      content: [this.defaultValue.content]
+    this.postFormGroup = this.fb.group({
+      title: [''],
+      content: ['']
     });
   }
 
+  @Input()
+  set post(post: Post) {
+    this._post = post;
+    if (this.postFormGroup) {
+      this.postFormGroup.get('title').setValue(post.title);
+      this.postFormGroup.get('content').setValue(post.content);
+    }
+  }
+
+  get post(): Post {
+    return this._post;
+  }
+
+  getPostForm(): PostForm {
+    return new PostForm(
+      this.postFormGroup.get('title').value,
+      this.postFormGroup.get('content').value
+    );
+  }
+
   runClickedSubmit(){
-    this.clickedSubmit.emit(new PostForm(
-      this.postForm.get('title').value,
-      this.postForm.get('content').value
-    ));
+    this.clickedSubmit.emit(this.getPostForm());
   }
 
   runClickedCancel() {
-    this.clickedCancel.emit(new PostForm(
-      this.postForm.get('title').value,
-      this.postForm.get('content').value
-    ));
+    this.clickedCancel.emit(this.getPostForm());
   }
 }
