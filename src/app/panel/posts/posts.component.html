@@ -1,4 +1,8 @@
-<div class="posts row">
+<div class="container">
+<div class="row">
+    <p>Wszystkich wpisów: {{ pageElements }}</p>
+</div>
+<div class="row">
     <div class="col">
         <app-post *ngFor="let post of page.content" 
             [post]='post'>
@@ -10,4 +14,5 @@
         [resourcesPage]='page'
         (actionParams)='getPage($event)'>
     </app-pagination>
+</div>
 </div>

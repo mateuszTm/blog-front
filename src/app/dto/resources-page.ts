@@ -3,4 +3,5 @@ export class ResourcesPage {
     numberOfElements: number;
     totalPages: number;
     number: number;
+    totalElements: number;
 }

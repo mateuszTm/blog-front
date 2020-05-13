@@ -3,6 +3,7 @@ import { HttpParams } from '@angular/common/http';
 import { PostService } from 'src/app/services/post-service.service';
 import { Post } from 'src/app/dto/post';
 import { ResourcesPage } from 'src/app/dto/resources-page';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-posts',
@@ -14,7 +15,7 @@ export class PostsComponent implements OnInit {
   page = new ResourcesPage();
   pageElements: number;
 
-  constructor(private postService: PostService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.getPage();
@@ -22,11 +23,11 @@ export class PostsComponent implements OnInit {
 
   private _update(data: ResourcesPage){
     this.page = data;
-    this.pageElements = data.numberOfElements;
+    this.pageElements = data.totalElements;
   }
 
   getPage(params?: HttpParams) {
-    this.postService.getPosts(params).subscribe({
+    this.userService.getCurrentUserPosts(params).subscribe({
       next: data => {this._update(data); }
     });
   }

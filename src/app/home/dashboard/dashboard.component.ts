@@ -11,7 +11,7 @@ import { HttpParams } from '@angular/common/http';
 })
 export class DashboardComponent implements OnInit {
 
-  page: ResourcesPage;
+  page: ResourcesPage = new ResourcesPage();
   pageElements: number;
 
   constructor(private postService: PostService) { }
