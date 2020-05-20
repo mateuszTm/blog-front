@@ -8,11 +8,12 @@ import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProfilesComponent } from './profiles/profiles.component';
 
 
 
 @NgModule({
-  declarations: [ConfigComponent, PanelComponent, PostsComponent, SidemenuComponent],
+  declarations: [ConfigComponent, PanelComponent, PostsComponent, SidemenuComponent, ProfilesComponent],
   imports: [
     CommonModule,
     SharedModule,

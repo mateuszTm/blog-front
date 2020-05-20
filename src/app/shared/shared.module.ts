@@ -6,16 +6,18 @@ import { PostAddComponent } from './post-add/post-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostFormComponent } from './post-form/post-form.component';
 import { RouterModule } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileFormComponent } from './profile-form/profile-form.component';
 
 
 
 @NgModule({
-  declarations: [PaginationComponent, PostComponent, PostAddComponent, PostFormComponent],
+  declarations: [PaginationComponent, PostComponent, PostAddComponent, PostFormComponent, ProfileComponent, ProfileFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule
   ],
-  exports: [PaginationComponent, PostComponent, PostAddComponent, PostFormComponent]
+  exports: [PaginationComponent, PostComponent, PostAddComponent, PostFormComponent, ProfileComponent]
 })
 export class SharedModule { }

@@ -11,11 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { SharedModule } from './shared/shared.module';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditPostComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

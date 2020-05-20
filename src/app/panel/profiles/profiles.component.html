@@ -1,0 +1,16 @@
+<div class="container">
+    wszystkich profili: {{profilesPage.totalElements}}
+    <div class="row">
+        <div class="col">
+            <app-profile *ngFor='let profile of profilesPage.content'
+                [profile]='profile'>
+            </app-profile>
+        </div>
+    </div>
+    <div class="row">
+        <app-pagination class="col-ms-4 mx-auto"
+            [resourcesPage]='profilesPage'
+            (actionParams)='getPage($event)'>
+        </app-pagination>
+    </div>
+</div>

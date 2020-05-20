@@ -1,10 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <p>Login: {{profile.login}}</p>
-            <p>Id: {{profile.id}}</p>
-            <p>Opis: {{profile.description}}</p>
-            <p>Aktywny: {{profile.active}}</p>
+            <app-profile
+                [profile]='profile'>
+            </app-profile>
         </div>
     </div>
 </div>

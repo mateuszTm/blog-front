@@ -1,0 +1,12 @@
+<div class="card m-2">
+    <div class="card-body">
+        <h4 class="card-title">{{profile.login}}</h4>
+        <div class="card-text">
+            <p>id: {{profile.id}}</p>
+            <p>opis: {{profile.description}}</p>
+            <p>aktywny: {{profile.active}}</p>
+        </div>
+        <a class="card-link" [routerLink]="['/editProfile', profile.id]" >edytuj</a>
+        <a class="card-link" (click)='runDelete()'>usuń</a>
+    </div>
+</div>

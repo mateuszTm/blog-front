@@ -45,4 +45,17 @@ export class ProfileService {
       }
     );
   }
+
+  getProfiles(httpParams?: HttpParams): Observable<ResourcesPage> {
+    if (!httpParams) {
+      httpParams = new HttpParams().set('page', '0');
+    }
+    return this.http.get<ResourcesPage>(
+      this.url + '/list',
+      {
+        params: httpParams.set('sort', 'id,desc'),
+        headers: this.getHeaders()
+      }
+    );
+  }
 }
