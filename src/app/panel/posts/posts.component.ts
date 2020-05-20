@@ -3,7 +3,7 @@ import { HttpParams } from '@angular/common/http';
 import { PostService } from 'src/app/services/post-service.service';
 import { Post } from 'src/app/dto/post';
 import { ResourcesPage } from 'src/app/dto/resources-page';
-import { UserService } from 'src/app/services/user.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-posts',
@@ -15,7 +15,7 @@ export class PostsComponent implements OnInit {
   page = new ResourcesPage();
   pageElements: number;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: ProfileService) { }
 
   ngOnInit(): void {
     this.getPage();

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from 'src/app/services/profile.service';
+import { Profile } from 'src/app/dto/profile';
 
 @Component({
   selector: 'app-config',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigComponent implements OnInit {
 
-  constructor() { }
+  profile = new Profile();
+
+  constructor(
+    private profileService: ProfileService
+  ) { }
 
   ngOnInit(): void {
+    this.profileService.getCurrentUserProfile().subscribe({
+      next: (profileData: Profile) => {
+        console.log(profileData);
+        this.profile = profileData;
+      }
+    });
   }
 
 }

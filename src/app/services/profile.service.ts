@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { ResourcesPage } from '../dto/resources-page';
 import { Observable } from 'rxjs';
+import { Profile } from '../dto/profile';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class ProfileService {
 
-  private url = 'http://localhost:8082/resourceserver/user';
+  private url = 'http://localhost:8082/resourceserver/profile';
 
   constructor(
     private http: HttpClient,
@@ -31,6 +32,15 @@ export class UserService {
       this.url + '/post',
       {
         params: httpParams.set('sort', 'date,desc'),
+        headers: this.getHeaders()
+      }
+    );
+  }
+
+  getCurrentUserProfile(): Observable<Profile> {
+    return this.http.get<Profile>(
+      this.url,
+      {
         headers: this.getHeaders()
       }
     );
