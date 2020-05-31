@@ -58,4 +58,23 @@ export class ProfileService {
       }
     );
   }
+
+  getProfileById(id: number|string): Observable<Profile> {
+    return this.http.get<Profile>(
+      this.url + '/' + id,
+      {
+        headers: this.getHeaders()
+      }
+    );
+  }
+
+  updateProfileById(id: number|string, profile: Profile): Observable<Profile> {
+    return this.http.put<Profile>(
+      this.url + '/' + id,
+      profile,
+      {
+        headers: this.getHeaders()
+      }
+    )
+  }
 }

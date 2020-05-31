@@ -1,1 +1,12 @@
-<p>edit-profile works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <app-profile-form 
+            class="col" 
+            [profile]='profile'
+            (clickedSubmit)='saveProfile($event)'
+            (clickedCancel)='goToList()'>
+        </app-profile-form>
+    </div>
+</div>
+<app-footer></app-footer>
