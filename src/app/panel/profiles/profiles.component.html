@@ -3,7 +3,8 @@
     <div class="row">
         <div class="col">
             <app-profile *ngFor='let profile of profilesPage.content'
-                [profile]='profile'>
+                [profile]='profile'
+                (whenDelete)='getPage()'>
             </app-profile>
         </div>
     </div>

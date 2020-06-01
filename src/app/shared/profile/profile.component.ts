@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Profile } from 'src/app/dto/profile';
 import { Router } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,17 +12,28 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   @Input() profile: Profile;
-  @Output() editAction: EventEmitter<void> = new EventEmitter();
-  @Output() deleteAction: EventEmitter<void> = new EventEmitter();
+  @Output() whenEdit: EventEmitter<void> = new EventEmitter();
+  @Output() whenDelete: EventEmitter<void> = new EventEmitter();
 
   constructor(
-    private router: Router
+    private router: Router,
+    private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
   }
 
   runDelete() {
-    console.log('kliknięto usunięcie profile');
+    if (confirm('Na pewno chcesz usunąć ten profil?')) {
+      this.profileService.delete(this.profile.id).subscribe({
+        next: (resp) => {
+          MessageService.success('Profil został usunięty');
+          this.whenDelete.emit();
+        },
+        error: (err) => {
+          MessageService.error(err);
+        }
+      });
+    }
   }
 }

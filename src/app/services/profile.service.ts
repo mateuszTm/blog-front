@@ -75,6 +75,15 @@ export class ProfileService {
       {
         headers: this.getHeaders()
       }
-    )
+    );
+  }
+
+  public delete(id: number | string): Observable<any> {
+    return this.http.delete(
+      this.url + '/' + id,
+      {
+        headers: this.getHeaders()
+      }
+      );
   }
 }
