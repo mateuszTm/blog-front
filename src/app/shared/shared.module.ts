@@ -10,9 +10,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileFormComponent } from './profile-form/profile-form.component';
 
 
-
 @NgModule({
-  declarations: [PaginationComponent, PostComponent, PostAddComponent, PostFormComponent, ProfileComponent, ProfileFormComponent],
+  declarations: [
+    PaginationComponent,
+    PostComponent,
+    PostAddComponent,
+    PostFormComponent,
+    ProfileComponent,
+    ProfileFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

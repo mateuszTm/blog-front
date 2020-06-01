@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Post } from 'src/app/dto/post';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PostService } from 'src/app/services/post-service.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-post',
@@ -10,15 +12,13 @@ import { Router } from '@angular/router';
 export class PostComponent implements OnInit {
 
   @Input() post: Post;
-  // @Input() title: string;
-  // @Input() author: string;
-  // @Input() date: string;
-  // @Input() content: string;
-  @Output() editPost: EventEmitter<void> = new EventEmitter();
-  @Output() deletePost: EventEmitter<void> = new EventEmitter();
+  @Output() whenEdit: EventEmitter<void> = new EventEmitter();
+  @Output() whenDelete: EventEmitter<void> = new EventEmitter();
 
   constructor(
-    private router: Router
+    private router: Router,
+    private postService: PostService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +30,17 @@ export class PostComponent implements OnInit {
   }
 
   runDeletePost() {
-    console.log('kliknięto usunięcie wpisu');
+    if (confirm('Na pewno chcesz usunąć ten wpis?')) {
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      };
+      this.postService.deletePost(this.post.id).subscribe({
+        next: (resp) => {
+          MessageService.success('Usunięto wpis');
+          this.whenDelete.emit();
+        },
+        error: error => MessageService.error(error)
+      });
+    }
   }
 }

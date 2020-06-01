@@ -54,4 +54,13 @@ export class PostService {
       }
     );
   }
+
+  public deletePost(id: number | string): Observable<any> {
+    return this.http.delete<any>(
+      this.url + '/' + id,
+      {
+        headers: this.getHeaders()
+      }
+    );
+  }
 }
