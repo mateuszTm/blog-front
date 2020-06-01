@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col">
             <app-post *ngFor="let post of page.content" 
-                [post]='post'>
+                [post]='post'
+                (whenDelete)='getPage()'>
             </app-post>
         </div>
     </div>
