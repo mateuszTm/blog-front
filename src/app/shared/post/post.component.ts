@@ -18,7 +18,8 @@ export class PostComponent implements OnInit {
   constructor(
     private router: Router,
     private postService: PostService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -42,5 +43,16 @@ export class PostComponent implements OnInit {
         error: error => MessageService.error(error)
       });
     }
+  }
+
+
+
+
+
+  runMsgSuccess(){
+    this.messageService.success(':)');
+  }
+  runMsgError(){
+    this.messageService.error(':(');
   }
 }

@@ -17,7 +17,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
   declarations: [
     AppComponent,
     EditPostComponent,
-    EditProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
