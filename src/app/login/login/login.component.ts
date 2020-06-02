@@ -12,20 +12,21 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
-      MessageService.info('You are already logged in');
+      this.messageService.info('You are already logged in');
       this.router.navigate(['/']);
       console.log('is logged in');
     } else {
       if (!this.authService.isUserVerified()) {
-        alert('is not verified');
+        console.log('is not verified');
         this.authService.verifyUser();
       }
-      alert('aquire token');
+      console.log('aquire token');
       this.authService.aquireAccessToken();
     }
   }

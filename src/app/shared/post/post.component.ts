@@ -37,10 +37,10 @@ export class PostComponent implements OnInit {
       };
       this.postService.deletePost(this.post.id).subscribe({
         next: (resp) => {
-          MessageService.success('Usunięto wpis');
+          this.messageService.success('Usunięto wpis');
           this.whenDelete.emit();
         },
-        error: error => MessageService.error(error)
+        error: error => this.messageService.error(error)
       });
     }
   }

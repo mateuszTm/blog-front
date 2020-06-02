@@ -12,6 +12,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { SharedModule } from './shared/shared.module';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { MessageModule } from './message/message.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
   imports: [
     BrowserModule,
     SharedModule,
+    MessageModule,
     HeaderModule,
     FooterModule,
     PanelModule,

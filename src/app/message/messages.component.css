@@ -1,0 +1,5 @@
+#messages-container {
+    max-width: 50%;
+    z-index: 1;
+    opacity: 90%;
+}

@@ -11,5 +11,7 @@ export class Message {
 
 export enum MessageType {
     success,
-    error
+    warning,
+    error,
+    info
 }

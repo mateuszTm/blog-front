@@ -1,6 +1,6 @@
-<div *ngFor="let msg of messages" class="{{getCssClass(msg)}}">
-    <strong>message: </strong> <span>{{msg.message}}</span>
-    <button type="button" (click)='removeMessage(msg)' class="close">
-        &times;
-    </button>
+<div id="messages-container" class="fixed-bottom mr-3 ml-auto">
+    <app-message *ngFor="let msg of messages"
+        [message]='msg'
+        (whenClose)='removeMessage(msg)'>
+    </app-message>
 </div>

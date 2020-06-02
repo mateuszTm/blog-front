@@ -27,15 +27,7 @@ export class MessageService {
     this.sendMessage(MessageType.error, message);
   }
 
-  static success(message: string) {
-    // alert('SUCCESS: ' + message);
-  }
-
-  static info(message: string) {
-    alert('INFO: ' + message);
-  }
-
-  static error(message: string) {
-    alert('ERROR: ' + message);
+  info(message: string): void {
+    this.sendMessage(MessageType.info, message);
   }
 }

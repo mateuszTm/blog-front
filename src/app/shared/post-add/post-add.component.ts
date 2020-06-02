@@ -6,6 +6,7 @@ import { PostService } from 'src/app/services/post-service.service';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/dto/post';
 import { PostForm } from 'src/app/dto/post-form';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-post-add',
@@ -20,7 +21,8 @@ export class PostAddComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -50,10 +52,12 @@ export class PostAddComponent implements OnInit {
 
     this.postService.addPost(post).subscribe({
         next: (data) => {
+          this.messageService.success('Wpis został dodany');
           console.log('post/add response: ');
           console.log(data);
           this.runOnSuccess();
-        }
+        },
+        error: error => this.messageService.error(error)
       });
   }
 

@@ -8,7 +8,10 @@ import { MessageService } from './message.service';
 })
 export class AuthService {
 
-    constructor(private auth: ImplicitLoginService){}
+    constructor(
+        private auth: ImplicitLoginService,
+        private messageService: MessageService
+    ){}
 
     verifyUser(): void {
         this.auth.verifyUser();
@@ -20,7 +23,7 @@ export class AuthService {
 
     aquireAccessToken(): void {
         this.auth.aquireAccessToken();
-        MessageService.success('You have logged in');
+        this.messageService.success('You have logged in');
     }
 
     isLoggedIn(): boolean {
@@ -29,7 +32,7 @@ export class AuthService {
 
     logout(): void {
         this.auth.logout();
-        MessageService.success('You have been logged out');
+        this.messageService.success('You have been logged out');
     }
 
     getAccessToken(): string {

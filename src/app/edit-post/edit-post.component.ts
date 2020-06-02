@@ -17,7 +17,8 @@ export class EditPostComponent implements OnInit {
   constructor(
     private postService: PostService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -30,9 +31,8 @@ export class EditPostComponent implements OnInit {
 
   runSavePost(post: PostForm) {
     this.postService.editPost(this.post.id, post).subscribe({
-      next: data => {
-        MessageService.success('Wpis został pomyślnie edytowany');
-      }
+      next: data => this.messageService.success('Wpis został pomyślnie edytowany'),
+      error: error => this.messageService.error(error)
     });
   }
 

@@ -17,7 +17,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -27,11 +28,11 @@ export class ProfileComponent implements OnInit {
     if (confirm('Na pewno chcesz usunąć ten profil?')) {
       this.profileService.delete(this.profile.id).subscribe({
         next: (resp) => {
-          MessageService.success('Profil został usunięty');
+          this.messageService.success('Profil został usunięty');
           this.whenDelete.emit();
         },
         error: (err) => {
-          MessageService.error(err);
+          this.messageService.error(err);
         }
       });
     }
