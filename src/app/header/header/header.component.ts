@@ -9,16 +9,16 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class HeaderComponent implements OnInit {
 
-  loggedIn = false;
-
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.loggedIn = this.authService.isLoggedIn();
   }
 
-  logout(): void {
+  public logout(): void {
     this.authService.logout();
-    window.location.reload();
+  }
+
+  public isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 }

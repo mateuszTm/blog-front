@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { MessageType, Message } from '../message';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-message',
@@ -29,9 +30,11 @@ export class MessageComponent implements OnInit {
   set message(message: Message) {
     this._message = message;
     this.class.push(this.messageTypeClasses[message.type]);
-    setTimeout(() => {
-      this.closeMessage();
-    }, 5000);
+    if (environment.autocloseMessages) {
+      setTimeout(() => {
+        this.closeMessage();
+      }, 5000);
+    }
   }
 
   get message(): Message {

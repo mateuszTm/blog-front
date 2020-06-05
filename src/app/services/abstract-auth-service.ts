@@ -10,9 +10,8 @@ export interface TokenResponse {
 
 @Injectable()
 export abstract class AbstractAuthService {
-    abstract verifyUser(): void;
-    abstract isUserVerified(): boolean;
-    abstract aquireAccessToken(): void;
     abstract isLoggedIn(): boolean;
     abstract logout(): void;
+    abstract getAccessToken(): string;
+    abstract login(): Promise<any>;
 }

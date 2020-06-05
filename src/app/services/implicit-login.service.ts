@@ -1,7 +1,6 @@
 import { AbstractAuthService } from './abstract-auth-service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -25,28 +24,30 @@ export class ImplicitLoginService implements AbstractAuthService {
         this.oauthService.tryLogin();
     }
 
-    verifyUser(): void {
-        this.oauthService.initImplicitFlow();
-    }
-
-    isUserVerified(): boolean {
-        return window.location.href.includes('access_token');
-    }
-
-    aquireAccessToken(): void {
-        this.oauthService.tryLogin();
-    }
-
-    isLoggedIn(): boolean {
+    public isLoggedIn(): boolean {
         return this.oauthService.hasValidAccessToken();
     }
 
-    logout(): void {
+    public logout(): void {
         this.oauthService.logOut();
-        location.reload();
     }
 
-    getAccessToken(): string {
+    public getAccessToken(): string {
         return this.oauthService.getAccessToken();
+    }
+
+    public login(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.oauthService.tryLogin()
+                .then((success) => {
+                    if (success) {
+                        resolve();
+                    } else {
+                        this.oauthService.initImplicitFlow();
+                    }
+                }).catch(
+                    error => reject(error)
+                );
+        });
     }
 }

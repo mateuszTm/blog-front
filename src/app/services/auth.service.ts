@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ImplicitLoginService } from './implicit-login.service';
-import { HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -10,32 +10,32 @@ export class AuthService {
 
     constructor(
         private auth: ImplicitLoginService,
-        private messageService: MessageService
-    ){}
+        private messageService: MessageService,
+        private router: Router
+    ) { }
 
-    verifyUser(): void {
-        this.auth.verifyUser();
-    }
-
-    isUserVerified(): boolean {
-        return this.auth.isUserVerified();
-    }
-
-    aquireAccessToken(): void {
-        this.auth.aquireAccessToken();
-        this.messageService.success('You have logged in');
-    }
-
-    isLoggedIn(): boolean {
+    public isLoggedIn(): boolean {
         return this.auth.isLoggedIn();
     }
 
-    logout(): void {
+    public logout(): void {
         this.auth.logout();
-        this.messageService.success('You have been logged out');
+        this.messageService.success('Zostałeś wylogowany');
     }
 
-    getAccessToken(): string {
+    public getAccessToken(): string {
         return this.auth.getAccessToken();
     }
+
+    public login(): void {
+        this.auth.login()
+            .then(() => {
+                this.router.navigate(['/']);
+                this.messageService.success('Zostałeś zalogowany');
+            }).catch((error) => {
+                this.router.navigate(['/']);
+                this.messageService.error(error);
+            });
+    }
+
 }
