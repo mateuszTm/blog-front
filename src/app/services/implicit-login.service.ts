@@ -1,6 +1,7 @@
 import { AbstractAuthService } from './abstract-auth-service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { authConfig } from 'src/environments/authConfig';
 
 @Injectable({
     providedIn: 'root'
@@ -14,14 +15,11 @@ export class ImplicitLoginService implements AbstractAuthService {
     constructor(
         private oauthService: OAuthService
     ) {
-        this.oauthService.configure({
-            loginUrl: this.authUrl,
-            redirectUri: this.redirectUriLogin,
-            clientId: this.clientId,
-            scope: 'read write',
-            oidc: false
-        });
-        this.oauthService.tryLogin();
+        this.configure();
+    }
+
+    private configure(): void {
+        this.oauthService.configure(authConfig);
     }
 
     public isLoggedIn(): boolean {
