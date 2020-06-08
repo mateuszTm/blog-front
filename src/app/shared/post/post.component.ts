@@ -18,7 +18,6 @@ export class PostComponent implements OnInit {
   constructor(
     private router: Router,
     private postService: PostService,
-    private activatedRoute: ActivatedRoute,
     private messageService: MessageService
   ) { }
 
@@ -36,8 +35,8 @@ export class PostComponent implements OnInit {
         return false;
       };
       this.postService.deletePost(this.post.id).subscribe({
-        next: (resp) => {
-          this.messageService.success('Usunięto wpis');
+        next: () => {
+          this.messageService.success('Wpis został usunięty');
           this.whenDelete.emit();
         },
         error: error => this.messageService.error(error)

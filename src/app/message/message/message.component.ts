@@ -30,10 +30,10 @@ export class MessageComponent implements OnInit {
   set message(message: Message) {
     this._message = message;
     this.class.push(this.messageTypeClasses[message.type]);
-    if (environment.autocloseMessages) {
+    if (environment.autocloseMessagesTimeout > 0) {
       setTimeout(() => {
         this.closeMessage();
-      }, 5000);
+      }, (environment.autocloseMessagesTimeout * 1000));
     }
   }
 

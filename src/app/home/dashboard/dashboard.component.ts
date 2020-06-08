@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/services/post-service.service';
 import { ResourcesPage } from 'src/app/dto/resources-page';
-import { Post } from 'src/app/dto/post';
-import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,8 +23,8 @@ export class DashboardComponent implements OnInit {
     this.pageElements = data.numberOfElements;
   }
 
-  getPage(params?: HttpParams) {
-    this.postService.getPosts(params).subscribe({
+  getPage(page?: number) {
+    this.postService.getPosts(page).subscribe({
       next: data => {this._setupFromData(data); }
     });
   }

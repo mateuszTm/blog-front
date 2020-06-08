@@ -27,7 +27,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   saveProfile(profile: Profile) {
-    this.profileService.updateProfileById(this.activatedRoute.snapshot.paramMap.get('id'), profile).subscribe({
+    this.profileService.editProfileById(this.activatedRoute.snapshot.paramMap.get('id'), profile).subscribe({
       next: (data) => {
         this.router.navigate(['panel', 'profiles']);
         }

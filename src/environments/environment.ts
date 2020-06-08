@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  autocloseMessages: false
+  autocloseMessagesTimeout: 8,
+  resourceServerUrl: 'http://localhost:8082/resourceserver/',
 };
 
 /*

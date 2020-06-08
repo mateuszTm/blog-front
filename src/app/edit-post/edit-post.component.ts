@@ -23,16 +23,13 @@ export class EditPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getPostById(this.activatedRoute.snapshot.paramMap.get('id')).subscribe({
-      next: (data: Post) => {
-        this.post = data;
-      }
+      next: (data: Post) => {this.post = data; }
     });
   }
 
   runSavePost(post: PostForm) {
     this.postService.editPost(this.post.id, post).subscribe({
-      next: data => this.messageService.success('Wpis został pomyślnie edytowany'),
-      error: error => this.messageService.error(error)
+      next: data => this.messageService.success('Wpis został pomyślnie edytowany')
     });
   }
 

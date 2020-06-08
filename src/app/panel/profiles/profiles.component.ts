@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourcesPage } from 'src/app/dto/resources-page';
 import { ProfileService } from 'src/app/services/profile.service';
-import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-profiles',
@@ -23,8 +22,8 @@ export class ProfilesComponent implements OnInit {
     console.log(data.content);
   }
 
-  getPage(httpParams?: HttpParams): void {
-    this.profileService.getProfiles(httpParams).subscribe({
+  getPage(page?: number): void {
+    this.profileService.getProfiles(page).subscribe({
       next: (data: ResourcesPage) => {
         this.update(data);
       }

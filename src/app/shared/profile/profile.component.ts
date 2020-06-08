@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
 
   runDelete() {
     if (confirm('Na pewno chcesz usunąć ten profil?')) {
-      this.profileService.delete(this.profile.id).subscribe({
+      this.profileService.deleteProfile(this.profile.id).subscribe({
         next: (resp) => {
           this.messageService.success('Profil został usunięty');
           this.whenDelete.emit();

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { ResourcesPage } from 'src/app/dto/resources-page';
-import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-pagination',
@@ -10,7 +9,7 @@ import { HttpParams } from '@angular/common/http';
 export class PaginationComponent implements OnInit, OnChanges {
 
   @Input() firstPageIndex = 0;
-  @Output() actionParams: EventEmitter<HttpParams> = new EventEmitter();
+  @Output() actionParams: EventEmitter<number> = new EventEmitter();
 
   pageLinks = [];
   lastPage = 1;
@@ -115,6 +114,6 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   runActionParams(pageNumber: number) {
-    this.actionParams.emit(new HttpParams().append('page', pageNumber.toString()));
+    this.actionParams.emit(pageNumber);
   }
 }
