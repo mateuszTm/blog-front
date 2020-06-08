@@ -19,7 +19,6 @@ export class ProfilesComponent implements OnInit {
 
   update(data: ResourcesPage) {
     this.profilesPage = data;
-    console.log(data.content);
   }
 
   getPage(page?: number): void {

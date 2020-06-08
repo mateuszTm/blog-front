@@ -23,6 +23,13 @@ import { ProfileFormComponent } from './profile-form/profile-form.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  exports: [PaginationComponent, PostComponent, PostAddComponent, PostFormComponent, ProfileComponent, ProfileFormComponent]
+  exports: [
+    PaginationComponent,
+    PostComponent,
+    PostAddComponent,
+    PostFormComponent,
+    ProfileComponent,
+    ProfileFormComponent
+  ]
 })
 export class SharedModule { }

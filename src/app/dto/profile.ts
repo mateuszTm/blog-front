@@ -1,6 +1,6 @@
 export class Profile {
-    id: number;
-    login: string;
-    description: string;
-    active: boolean;
+    public id: number;
+    public login: string;
+    public description: string;
+    public active: boolean;
 }

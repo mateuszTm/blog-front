@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Post } from 'src/app/dto/post';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post-service.service';
 import { MessageService } from 'src/app/services/message.service';
 
@@ -25,33 +25,17 @@ export class PostComponent implements OnInit {
   }
 
   runEditPost() {
-    console.log('kliknięto edycję wpisu');
     this.router.navigate(['/editPost/' + this.post.id]);
   }
 
   runDeletePost() {
     if (confirm('Na pewno chcesz usunąć ten wpis?')) {
-      this.router.routeReuseStrategy.shouldReuseRoute = function () {
-        return false;
-      };
       this.postService.deletePost(this.post.id).subscribe({
         next: () => {
           this.messageService.success('Wpis został usunięty');
           this.whenDelete.emit();
-        },
-        error: error => this.messageService.error(error)
+        }
       });
     }
-  }
-
-
-
-
-
-  runMsgSuccess(){
-    this.messageService.success(':)');
-  }
-  runMsgError(){
-    this.messageService.error(':(');
   }
 }

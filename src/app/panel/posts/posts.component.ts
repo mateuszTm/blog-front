@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { PostService } from 'src/app/services/post-service.service';
-import { Post } from 'src/app/dto/post';
 import { ResourcesPage } from 'src/app/dto/resources-page';
 import { ProfileService } from 'src/app/services/profile.service';
 

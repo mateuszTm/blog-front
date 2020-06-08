@@ -8,10 +8,6 @@ import { authConfig } from 'src/environments/authConfig';
 })
 export class ImplicitLoginService implements AbstractAuthService {
 
-    private authUrl = 'http://localhost:8081/authserver/oauth/authorize';
-    private clientId = 'client-id';
-    private redirectUriLogin = 'http://localhost:4200/login';
-
     constructor(
         private oauthService: OAuthService
     ) {

@@ -18,7 +18,6 @@ export class ConfigComponent implements OnInit {
   ngOnInit(): void {
     this.profileService.getCurrentUserProfile().subscribe({
       next: (profileData: Profile) => {
-        console.log(profileData);
         this.profile = profileData;
       }
     });

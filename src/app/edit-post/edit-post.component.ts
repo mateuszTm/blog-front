@@ -12,7 +12,7 @@ import { MessageService } from '../services/message.service';
 })
 export class EditPostComponent implements OnInit {
 
-  post = new Post('','','','','','');
+  post = new Post();
 
   constructor(
     private postService: PostService,

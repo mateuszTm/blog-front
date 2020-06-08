@@ -1,7 +1,7 @@
 export class ResourcesPage {
-    content: [];
-    numberOfElements: number;
-    totalPages: number;
-    number: number;
-    totalElements: number;
+    public content: [];
+    public numberOfElements: number;
+    public totalPages: number;
+    public number: number;
+    public totalElements: number;
 }

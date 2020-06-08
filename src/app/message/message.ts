@@ -1,12 +1,9 @@
-
 export class Message {
-    message: string;
-    type: MessageType;
+    constructor(
+        public type: MessageType,
+        public message: string
+    ) { }
 
-    constructor(type: MessageType, message: string) {
-        this.type = type;
-        this.message = message;
-    }
 }
 
 export enum MessageType {
