@@ -4,13 +4,15 @@ import { PanelComponent } from './panel.component';
 import { ConfigComponent } from './config/config.component';
 import { PostsComponent } from './posts/posts.component';
 import { ProfilesComponent } from './profiles/profiles.component';
+import { AuthGuard } from '../services/auth.guard';
+import { Role } from '../services/role';
 
 const routes: Routes = [
-    { path: 'panel', component: PanelComponent, children: [
+    { path: 'panel', canActivate: [AuthGuard], component: PanelComponent, children: [
         { path: '', pathMatch: 'full', redirectTo: 'config'},
         { path: 'config', component: ConfigComponent},
         { path: 'posts', component: PostsComponent},
-        { path: 'profiles', component: ProfilesComponent}
+        { path: 'profiles', component: ProfilesComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] }}
     ]}
 ];
 

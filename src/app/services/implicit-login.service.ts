@@ -2,6 +2,7 @@ import { AbstractAuthService } from './abstract-auth-service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authConfig } from 'src/environments/authConfig';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
     providedIn: 'root'
@@ -43,5 +44,13 @@ export class ImplicitLoginService implements AbstractAuthService {
                     error => reject(error)
                 );
         });
+    }
+
+    getPayload(): string[] | null {
+        let token = this.getAccessToken();
+        if (token) {
+            return jwt_decode(this.getAccessToken());
+        }
+        return null;
     }
 }

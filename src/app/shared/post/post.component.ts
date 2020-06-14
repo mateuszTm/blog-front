@@ -11,6 +11,7 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class PostComponent implements OnInit {
 
+  @Input() showActionLinks = true;
   @Input() post: Post;
   @Output() whenEdit: EventEmitter<void> = new EventEmitter();
   @Output() whenDelete: EventEmitter<void> = new EventEmitter();

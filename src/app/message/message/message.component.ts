@@ -19,7 +19,6 @@ export class MessageComponent implements OnInit {
     [MessageType.warning]: 'alert-warning'
   };
   @Output() whenClose: EventEmitter<void> = new EventEmitter();
-  subject = new Subject();
 
   constructor() { }
 

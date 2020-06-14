@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Role } from 'src/app/services/role';
 
 @Component({
   selector: 'app-sidemenu',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidemenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+
   }
 
+  isAdmin(): boolean {
+    return this.authService.hasRole([Role.Admin]);
+  }
 }

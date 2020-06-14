@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PostService } from 'src/app/services/post-service.service';
-import { Router } from '@angular/router';
 import { PostForm } from 'src/app/dto/post-form';
 import { MessageService } from 'src/app/services/message.service';
 
@@ -11,13 +10,12 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class PostAddComponent implements OnInit {
 
-  @Input() onCancelRoute = '';
-  @Input() onSuccessRoute = '';
+  @Output() whenSuccess = new EventEmitter<void>();
+  @Output() whenCancel = new EventEmitter<void>();
   isFormVisible = false;
 
   constructor(
     private postService: PostService,
-    private router: Router,
     private messageService: MessageService
   ) {}
 
@@ -35,19 +33,13 @@ export class PostAddComponent implements OnInit {
   }
 
   runOnCancel(post: PostForm) {
-    if (this.onCancelRoute) {
-      this.router.navigate([this.onCancelRoute]);
-    }
     this.hideForm();
+    this.whenCancel.emit();
   }
 
   runOnSuccess() {
-    if (this.onSuccessRoute) {
-      this.router.navigate([this.onSuccessRoute]);
-    } else {
-      this.router.navigate(['/']);
-    }
     this.hideForm();
+    this.whenSuccess.emit();
   }
 
   showForm() {
