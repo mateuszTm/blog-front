@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { User } from './user';
 import { Role } from './role';
+import { KeycloakService } from './keycloak.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
     private subject = new Subject<boolean>();
 
     constructor(
-        private auth: ImplicitLoginService,
+        private auth: KeycloakService,
         private messageService: MessageService,
         private router: Router
     ) { }
@@ -55,34 +56,11 @@ export class AuthService {
             });
     }
 
-    private _getJwtPayload(): string[] | null {
-        return this.auth.getPayload();
-    }
-
-    public getUserRoles(): Role[] | null {
-        const payload = this._getJwtPayload();
-        if (payload) {
-            return payload['authorities'].map(
-                (role: string) => {
-                    return Role[role];
-                });
-        }
-        return null;
-    }
-
     public hasRole(roles: Role[]): boolean {
-        const userRoles = this.getUserRoles();
-        if (userRoles && roles.every(val => userRoles.includes(val))) {
-          return true;
-        }
-        return false;
+        return this.auth.hasRole(roles);
     }
 
-    getCurrentUser(): User | null {
-        const payload = this._getJwtPayload();
-        return new User(
-            payload['sub'],
-            this.getUserRoles()
-        );
+    public getCurrentUser(): User | null {
+        return this.auth.getCurrentUser();
     }
 }

@@ -12,7 +12,7 @@ const routes: Routes = [
         { path: '', pathMatch: 'full', redirectTo: 'config'},
         { path: 'config', component: ConfigComponent},
         { path: 'posts', component: PostsComponent},
-        { path: 'profiles', component: ProfilesComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] }}
+        { path: 'profiles', component: ProfilesComponent, canActivate: [AuthGuard], data: { roles: [Role.ADMIN] }}
     ]}
 ];
 

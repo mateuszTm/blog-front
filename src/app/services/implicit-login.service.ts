@@ -2,20 +2,23 @@ import { AbstractAuthService } from './abstract-auth-service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authConfig } from 'src/environments/authConfig';
-import * as jwt_decode from 'jwt-decode';
+import { User } from './user';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ImplicitLoginService implements AbstractAuthService {
+export class ImplicitLoginService extends AbstractAuthService {
+    protected _userNamePath = ['sub'];
+    protected _rolesPath = ['authorities'];
 
     constructor(
-        private oauthService: OAuthService
+        protected oauthService: OAuthService
     ) {
+        super();
         this.configure();
     }
 
-    private configure(): void {
+    protected configure(): void {
         this.oauthService.configure(authConfig);
     }
 
@@ -46,11 +49,17 @@ export class ImplicitLoginService implements AbstractAuthService {
         });
     }
 
-    getPayload(): string[] | null {
-        let token = this.getAccessToken();
-        if (token) {
-            return jwt_decode(this.getAccessToken());
+    protected _getRoles(): string[] | null {
+        if (this.isLoggedIn()) {
+            return super._getPayload()['authorities'];
         }
         return null;
+    }
+
+    public getCurrentUser(): User {
+        return new User(
+            this._getPayload()['sub'],
+            this.getUserRoles()
+        );
     }
 }

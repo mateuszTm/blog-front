@@ -18,6 +18,6 @@ export class SidemenuComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    return this.authService.hasRole([Role.Admin]);
+    return this.authService.hasRole([Role.ADMIN]);
   }
 }
