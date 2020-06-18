@@ -7,8 +7,8 @@ import { keyCloakAuthConfig } from 'src/environments/keyCloakAuthConfig';
   providedIn: 'root'
 })
 export class KeycloakService extends AbstractAuthService {
-  protected _userNamePath = ['preferred_username'];
-  protected _rolesPath = ['realm_access', 'roles'];
+  protected _userNamePath = ['sub'];
+  protected _rolesPath = ['authorities'];
 
   constructor(
     protected oauthService: OAuthService
