@@ -13,12 +13,14 @@ import { EditPostComponent } from './edit-post/edit-post.component';
 import { SharedModule } from './shared/shared.module';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MessageModule } from './message/message.module';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditPostComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
