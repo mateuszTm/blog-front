@@ -6,7 +6,7 @@
                 <h6>{{ post.userName }}</h6>
             </div>
             <div>
-                {{ post.date }}
+                {{ post.date | date : 'EEEE h:mm, dd MMMM yyyy'}}
             </div>
         </div>
         <p class="card-text">{{ post.content }}</p>
