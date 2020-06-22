@@ -34,28 +34,34 @@ export class PostFormComponent implements OnInit {
   @Input()
   set post(post: Post) {
     this._post = post;
-    if (this.postFormGroup) {
-      this.fcTitle.setValue(post.title);
-      this.fcContent.setValue(post.content);
-    }
+    this.setFormValues(post);
   }
 
   get post(): Post {
     return this._post;
   }
 
-  getPostForm(): PostForm {
+  public setFormValues(post: Post): void{
+    if (this.postFormGroup) {
+      this.postFormGroup.patchValue({
+        title: post.title,
+        content: post.content
+      });
+    }
+  }
+
+  public getPostForm(): PostForm {
     return new PostForm(
       this.fcTitle.value,
       this.fcContent.value
     );
   }
 
-  runClickedSubmit(){
+  public runClickedSubmit(): void{
     this.clickedSubmit.emit(this.getPostForm());
   }
 
-  runClickedCancel() {
+  public runClickedCancel(): void {
     this.clickedCancel.emit(this.getPostForm());
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Profile } from 'src/app/dto/profile';
 
 @Component({
@@ -10,6 +10,8 @@ import { Profile } from 'src/app/dto/profile';
 export class ProfileFormComponent implements OnInit {
 
   formGroup: FormGroup;
+  fcDesc: FormControl;
+  fcActive: FormControl;
   private _profile: Profile;
   @Output() clickedSubmit = new EventEmitter<Profile>();
   @Output() clickedCancel = new EventEmitter<Profile>();
@@ -17,9 +19,11 @@ export class ProfileFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.fcDesc = new FormControl('');
+    this.fcActive = new FormControl(true);
     this.formGroup = this.fb.group({
-      description: [''],
-      active: []
+      description: this.fcDesc,
+      active: this.fcActive
     });
   }
 
@@ -43,8 +47,8 @@ export class ProfileFormComponent implements OnInit {
   }
 
   getProfile() {
-    this.profile.description = this.formGroup.get('description').value;
-    this.profile.active = this.formGroup.get('active').value;
+    this.profile.description = this.fcDesc.value;
+    this.profile.active = this.fcActive.value;
     return this.profile;
   }
 
