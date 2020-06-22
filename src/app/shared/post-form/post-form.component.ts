@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Post } from 'src/app/dto/post';
 import { PostForm } from 'src/app/dto/post-form';
 
@@ -11,6 +11,8 @@ import { PostForm } from 'src/app/dto/post-form';
 export class PostFormComponent implements OnInit {
 
   postFormGroup: FormGroup;
+  fcTitle: FormControl;
+  fcContent: FormControl;
   @Input() defaultValue = new PostForm('', '');
   @Output() clickedSubmit: EventEmitter<PostForm> = new EventEmitter();
   @Output() clickedCancel: EventEmitter<PostForm> = new EventEmitter();
@@ -21,9 +23,11 @@ export class PostFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.fcTitle = new FormControl('', [Validators.required]);
+    this.fcContent = new FormControl('', [Validators.required]);
     this.postFormGroup = this.fb.group({
-      title: [''],
-      content: ['']
+      title: this.fcTitle,
+      content: this.fcContent
     });
   }
 
@@ -31,8 +35,8 @@ export class PostFormComponent implements OnInit {
   set post(post: Post) {
     this._post = post;
     if (this.postFormGroup) {
-      this.postFormGroup.get('title').setValue(post.title);
-      this.postFormGroup.get('content').setValue(post.content);
+      this.fcTitle.setValue(post.title);
+      this.fcContent.setValue(post.content);
     }
   }
 
@@ -42,8 +46,8 @@ export class PostFormComponent implements OnInit {
 
   getPostForm(): PostForm {
     return new PostForm(
-      this.postFormGroup.get('title').value,
-      this.postFormGroup.get('content').value
+      this.fcTitle.value,
+      this.fcContent.value
     );
   }
 
