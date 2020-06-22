@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 import { environment } from 'src/environments/environment';
-import { MessageService } from './message.service';
+import { MessageService } from './message/message.service';
 
 @Injectable({
   providedIn: 'root'

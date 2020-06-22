@@ -6,7 +6,6 @@ export const keyCloakAuthConfig: AuthConfig = {
     clientId: 'blog',
     responseType: 'code',
     scope: 'openid profile email',
-    // TODO tylko dev!!
     requireHttps: false,
     showDebugInformation: true,
     disableAtHashCheck: true

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PostService } from 'src/app/services/post-service.service';
+import { PostService } from 'src/app/services/post/post-service.service';
 import { PostForm } from 'src/app/dto/post-form';
-import { MessageService } from 'src/app/services/message.service';
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-post-add',

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post } from '../dto/post';
-import { PostForm } from '../dto/post-form';
-import { ResourcesPage } from '../dto/resources-page';
-import { AbstractResourceService } from './abstract-resource.service';
+import { Post } from '../../dto/post';
+import { PostForm } from '../../dto/post-form';
+import { ResourcesPage } from '../../dto/resources-page';
+import { AbstractResourceService } from '../abstract-resource.service';
 
 
 @Injectable({

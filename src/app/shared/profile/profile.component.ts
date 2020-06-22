@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Profile } from 'src/app/dto/profile';
-import { ProfileService } from 'src/app/services/profile.service';
-import { MessageService } from 'src/app/services/message.service';
+import { ProfileService } from 'src/app/services/profile/profile.service';
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-profile',

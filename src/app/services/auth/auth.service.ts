@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ImplicitLoginService } from './implicit-login.service';
-import { MessageService } from './message.service';
+import { MessageService } from '../message/message.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { User } from './user';
@@ -37,6 +36,7 @@ export class AuthService {
     public logout(): void {
         this.auth.logout();
         this.updateLoggedInStatus(false);
+        this.router.navigate(['/']);
         this.messageService.success('Zostałeś wylogowany');
     }
 

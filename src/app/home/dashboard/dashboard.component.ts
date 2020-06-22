@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { PostService } from 'src/app/services/post-service.service';
+import { PostService } from 'src/app/services/post/post-service.service';
 import { ResourcesPage } from 'src/app/dto/resources-page';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/dto/post';
 

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Post } from 'src/app/dto/post';
 import { Router } from '@angular/router';
-import { PostService } from 'src/app/services/post-service.service';
-import { MessageService } from 'src/app/services/message.service';
+import { PostService } from 'src/app/services/post/post-service.service';
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-post',

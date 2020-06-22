@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../services/post-service.service';
+import { PostService } from '../services/post/post-service.service';
 import { Post } from '../dto/post';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostForm } from '../dto/post-form';
-import { MessageService } from '../services/message.service';
+import { MessageService } from '../services/message/message.service';
 
 @Component({
   selector: 'app-edit-post',

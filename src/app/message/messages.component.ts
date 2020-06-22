@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MessageService } from '../services/message.service';
+import { MessageService } from '../services/message/message.service';
 import { Message } from './message';
 import { Subscription } from 'rxjs';
 

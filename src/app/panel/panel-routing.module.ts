@@ -4,8 +4,8 @@ import { PanelComponent } from './panel.component';
 import { ConfigComponent } from './config/config.component';
 import { PostsComponent } from './posts/posts.component';
 import { ProfilesComponent } from './profiles/profiles.component';
-import { AuthGuard } from '../services/auth.guard';
-import { Role } from '../services/role';
+import { AuthGuard } from '../services/auth/auth.guard';
+import { Role } from '../services/auth/role';
 
 const routes: Routes = [
     { path: 'panel', canActivate: [AuthGuard], component: PanelComponent, children: [

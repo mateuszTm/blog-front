@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ResourcesPage } from '../dto/resources-page';
+import { ResourcesPage } from '../../dto/resources-page';
 import { Observable } from 'rxjs';
-import { Profile } from '../dto/profile';
-import { AbstractResourceService } from './abstract-resource.service';
+import { Profile } from '../../dto/profile';
+import { AbstractResourceService } from '../abstract-resource.service';
 
 @Injectable({
   providedIn: 'root'

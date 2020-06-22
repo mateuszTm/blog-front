@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 import { ResourcesPage } from '../dto/resources-page';
 import { Observable } from 'rxjs';
 import { Profile } from '../dto/profile';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { Role } from 'src/app/services/role';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Role } from 'src/app/services/auth/role';
 
 @Component({
   selector: 'app-sidemenu',
